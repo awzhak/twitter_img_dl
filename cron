@@ -1,0 +1,1 @@
+0 */1 * * * ~/python/twitter/bin/python ~/python/twitter/dl.py
