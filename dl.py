@@ -19,6 +19,7 @@ api = tweepy.API(auth)
 
 user_ids = os.getenv('USER_IDS').split(',')
 save_dirs = os.getenv('SAVE_DIRS').split(',')
+des_fav_ids = os.getenv('DES_FAV_IDS').split(',')
 
 for uid, save_dir in zip(user_ids, save_dirs):
     result = api.favorites(uid, count = 200)
@@ -32,3 +33,5 @@ for uid, save_dir in zip(user_ids, save_dirs):
                 res = requests.get(url + ':orig')
                 with open(os.path.join(filename), 'wb') as fp:
                     fp.write(res.content)
+            if uid in des_fav_ids:
+                api.destroy_favorite(result.id)
